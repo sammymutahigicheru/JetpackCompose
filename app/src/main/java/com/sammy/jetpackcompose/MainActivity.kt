@@ -7,22 +7,28 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme.typography
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sammy.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { 
-            NewsStroy()
+        setContent {
+            JetpackComposeTheme() {
+                NewsStroy()
+            }
+
         }
     }
     @Composable
@@ -41,15 +47,16 @@ class MainActivity : ComponentActivity() {
 
             )
             Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "A day wandering through the sandhills " +
-                        "in Shark Fin Cove, and a few of the " +
-                        "sights I saw",
-                style = typography.h6,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+            Surface(color = Color.Black) {
+                Text(
+                    text = "A day wandering through the sandhills " +
+                            "in Shark Fin Cove, and a few of the " +
+                            "sights I saw",
+                    style = typography.h6,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
             Text(
                 text = "Davenport, California",
                 style = typography.body2
@@ -62,7 +69,7 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    @Preview
+    @Preview(showBackground = true, name = "Text Preview")
     @Composable
     fun DefaultPreview(){
         NewsStroy()
