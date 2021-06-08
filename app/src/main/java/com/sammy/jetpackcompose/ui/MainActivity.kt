@@ -1,4 +1,4 @@
-package com.sammy.jetpackcompose
+package com.sammy.jetpackcompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
