@@ -7,10 +7,13 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.sammy.jetpackcompose.ui.components.CustomerListView
 import com.sammy.jetpackcompose.ui.components.DefaultSnackbar
 import com.sammy.jetpackcompose.ui.theme.AppTheme
@@ -18,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel by viewModels<AssetsViewModel>()
+    private val viewModel by viewModels<CustomerViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getAssets()
@@ -33,6 +36,24 @@ class MainActivity : ComponentActivity() {
                 darkTheme = false,
             ) {
                 Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Text(text = "Customers")
+                            },
+                            navigationIcon = {
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Menu,
+                                        contentDescription = "Menu Btn"
+                                    )
+                                }
+                            },
+                            backgroundColor = Color.Transparent,
+                            contentColor = Color.Black,
+                            elevation = 2.dp
+                        )
+                    },
                     scaffoldState = scaffoldState,
                     snackbarHost = {
                         scaffoldState.snackbarHostState

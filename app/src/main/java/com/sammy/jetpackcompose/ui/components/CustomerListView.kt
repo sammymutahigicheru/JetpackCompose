@@ -7,12 +7,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.sammy.jetpackcompose.data.AssetsResponseItem
+import com.sammy.jetpackcompose.data.CustomerResponseItem
 
 @Composable
 fun CustomerListView(
     loading: Boolean,
-    customers: List<AssetsResponseItem>,
+    customers: List<CustomerResponseItem>,
 ) {
     Box(
         modifier = Modifier

@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class AssetsResponseItem(
+data class CustomerResponseItem(
     @Json(name = "batchNumber")
     val batchNumber: String,
     @Json(name = "createdBy")
