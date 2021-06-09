@@ -1,5 +1,7 @@
 package com.sammy.jetpackcompose.ui
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sammy.jetpackcompose.data.AssetsResponseItem
@@ -18,8 +20,8 @@ class AssetsViewModel @Inject constructor(
     val loading: StateFlow<Boolean> = _loading
 
     //customer
-    private val _customer: MutableStateFlow<List<AssetsResponseItem>?> = MutableStateFlow(null)
-    val customer: StateFlow<List<AssetsResponseItem>?> = _customer
+    val customer: MutableState<List<AssetsResponseItem>> = mutableStateOf(ArrayList())
+
 
     fun getAssets() = viewModelScope.launch {
         _loading.value = true
@@ -27,7 +29,7 @@ class AssetsViewModel @Inject constructor(
         when (customers) {
             is ApiResponse.Success -> {
                 val items = customers.value
-                _customer.value = items
+                customer.value = items
                 _loading.value = false
             }
             is ApiResponse.Failure -> {
