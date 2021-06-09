@@ -1,10 +1,11 @@
 package com.sammy.jetpackcompose.ui.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sammy.jetpackcompose.data.AssetsResponseItem
@@ -18,27 +19,6 @@ fun CustomerView(
             .fillMaxWidth()
             .padding(8.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 4.dp)
-        ) {
-            Text(
-                text = customer.customerName,
-                modifier = Modifier
-                    .fillMaxWidth(0.85f)
-                    .wrapContentWidth(Alignment.Start),
-                style = MaterialTheme.typography.h3
-            )
-            Text(
-                text = customer.deliveryPointName,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentWidth(Alignment.End)
-                    .align(Alignment.CenterVertically),
-                style = MaterialTheme.typography.h5
-            )
-        }
         Text(
             text = customer.salesAreaName,
             modifier = Modifier
