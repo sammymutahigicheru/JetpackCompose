@@ -18,6 +18,7 @@ import com.sammy.jetpackcompose.ui.components.CustomerListView
 import com.sammy.jetpackcompose.ui.details.DetailsActivity
 import com.sammy.jetpackcompose.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -67,6 +68,7 @@ class MainActivity : ComponentActivity() {
                                 loading = loading,
                                 customers = customers,
                                 onNavigateToCustomerDetailScreen = {
+                                    Timber.e("***************Clicked*************")
                                     Intent(this@MainActivity, DetailsActivity::class.java).apply {
                                         startActivity(this)
                                     }

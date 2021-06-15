@@ -13,7 +13,7 @@ import com.sammy.jetpackcompose.data.CustomerResponseItem
 fun CustomerListView(
     loading: Boolean,
     customers: List<CustomerResponseItem>,
-    onNavigateToCustomerDetailScreen: () -> Unit
+    onNavigateToCustomerDetailScreen: (CustomerResponseItem) -> Unit
 ) {
     Box(
         modifier = Modifier
