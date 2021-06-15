@@ -58,6 +58,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
     implementation 'androidx.activity:activity-compose:1.3.0-alpha02'
 
+    def constraint_layout = "2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
     // DI - HILT
     implementation("com.google.dagger:hilt-android:2.33-beta")
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

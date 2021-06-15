@@ -1,5 +1,6 @@
 package com.sammy.jetpackcompose.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,8 +14,8 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.sammy.jetpackcompose.ui.components.CircularIndeterminateProgressBar
 import com.sammy.jetpackcompose.ui.components.CustomerListView
+import com.sammy.jetpackcompose.ui.details.DetailsActivity
 import com.sammy.jetpackcompose.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,9 +62,16 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        CircularIndeterminateProgressBar(isDisplayed = loading, verticalBias = 0.3f)
                         Column {
-                            CustomerListView(loading = loading, customers = customers)
+                            CustomerListView(
+                                loading = loading,
+                                customers = customers,
+                                onNavigateToCustomerDetailScreen = {
+                                    Intent(this@MainActivity, DetailsActivity::class.java).apply {
+                                        startActivity(this)
+                                    }
+                                }
+                            )
                         }
                     }
                 }

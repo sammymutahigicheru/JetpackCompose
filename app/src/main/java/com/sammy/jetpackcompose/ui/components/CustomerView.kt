@@ -20,6 +20,7 @@ import com.sammy.jetpackcompose.ui.theme.graySurface
 @Composable
 fun CustomerView(
     customer: CustomerResponseItem,
+    onNavigateToCustomerDetailScreen: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -29,7 +30,7 @@ fun CustomerView(
         backgroundColor = graySurface,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
     ) {
-        Row(Modifier.clickable { }) {
+        Row(Modifier.clickable { onNavigateToCustomerDetailScreen }) {
             Column(
                 modifier = Modifier
                     .padding(8.dp)
