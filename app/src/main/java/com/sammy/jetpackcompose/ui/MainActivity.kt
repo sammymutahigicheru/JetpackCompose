@@ -10,12 +10,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.sammy.jetpackcompose.ui.components.CircularIndeterminateProgressBar
 import com.sammy.jetpackcompose.ui.components.CustomerListView
-import com.sammy.jetpackcompose.ui.components.DefaultSnackbar
 import com.sammy.jetpackcompose.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,17 +61,10 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.fillMaxSize()
                     ) {
+                        CircularIndeterminateProgressBar(isDisplayed = loading, verticalBias = 0.3f)
                         Column {
                             CustomerListView(loading = loading, customers = customers)
                         }
-//                        CircularIndeterminateProgressBar(isDisplayed = loading, verticalBias = 0.3f)
-                        DefaultSnackbar(
-                            snackbarHostState = scaffoldState.snackbarHostState,
-                            onDismiss = {
-                                scaffoldState.snackbarHostState.currentSnackbarData?.dismiss()
-                            },
-                            modifier = Modifier.align(Alignment.BottomCenter)
-                        )
                     }
                 }
             }
