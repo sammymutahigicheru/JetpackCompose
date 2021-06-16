@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">JetpackCompose</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="connection_message_text">Unable to fetch podcast feeds.Check your internet connection and try again.</string>
+    <string name="retry">Retry</string>
 </resources>
