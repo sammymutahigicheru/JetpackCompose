@@ -10,13 +10,15 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.sammy.jetpackcompose.ui.home.Home
 
 @Composable
 fun JetpackComposeApp() {
     val context = LocalContext.current
     var isOnline by remember { mutableStateOf(checkIfOnline(context)) }
     if (isOnline) {
-
+        //navigate to home
+        Home()
     } else {
         OfflineDialog { isOnline = checkIfOnline(context) }
     }
