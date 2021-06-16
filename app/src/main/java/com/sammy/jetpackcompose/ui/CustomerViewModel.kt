@@ -1,7 +1,5 @@
 package com.sammy.jetpackcompose.ui
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sammy.jetpackcompose.data.CustomerResponseItem
@@ -16,25 +14,33 @@ import javax.inject.Inject
 class CustomerViewModel @Inject constructor(
     private val customerRepository: CustomerRepository
 ) : ViewModel() {
-    private val _loading = MutableStateFlow(false)
-    val loading: StateFlow<Boolean> = _loading
 
     //customer
-    val customer: MutableState<List<CustomerResponseItem>> = mutableStateOf(ArrayList())
+    private val _state = MutableStateFlow(HomeViewState())
 
+    val state: StateFlow<HomeViewState>
+        get() = _state
 
-    fun getAssets() = viewModelScope.launch {
-        _loading.value = true
-        val customers = customerRepository.getAssets()
-        when (customers) {
-            is ApiResponse.Success -> {
-                val items = customers.value
-                customer.value = items
-                _loading.value = false
-            }
-            is ApiResponse.Failure -> {
-                _loading.value = false
+    init {
+        viewModelScope.launch {
+            _state.value.refreshing = true
+            when (val response = customerRepository.getAssets()) {
+                is ApiResponse.Success -> {
+                    val customers = response.value
+                    _state.value.customers = customers
+                    _state.value.refreshing = false
+                }
+                is ApiResponse.Failure -> {
+                    _state.value.errorMessage = response.errorHolder.message
+                    _state.value.refreshing = false
+                }
             }
         }
     }
 }
+
+data class HomeViewState(
+    var customers: List<CustomerResponseItem> = emptyList(),
+    var refreshing: Boolean = false,
+    var errorMessage: String? = null
+)
