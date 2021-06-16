@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import com.sammy.jetpackcompose.ui.components.CustomerListView
 import com.sammy.jetpackcompose.ui.details.DetailsActivity
 import com.sammy.jetpackcompose.ui.theme.AppTheme
@@ -25,6 +26,9 @@ class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<CustomerViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // This app draws behind the system bars, so we want to handle fitting system windows
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         viewModel.getAssets()
         setContent {
             val loading = viewModel.loading.value
