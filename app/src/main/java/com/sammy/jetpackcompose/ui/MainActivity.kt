@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.sammy.jetpackcompose.JetpackComposeApp
+import com.sammy.jetpackcompose.ui.home.CustomerViewModel
 import com.sammy.jetpackcompose.ui.theme.JetpackComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 

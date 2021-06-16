@@ -1,4 +1,4 @@
-package com.sammy.jetpackcompose.ui
+package com.sammy.jetpackcompose.ui.home
 
 import com.sammy.jetpackcompose.data.base.BaseRepository
 import com.sammy.jetpackcompose.network.ApiService

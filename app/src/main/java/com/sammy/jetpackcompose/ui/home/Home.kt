@@ -1,27 +1,28 @@
 package com.sammy.jetpackcompose.ui.home
 
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sammy.jetpackcompose.data.CustomerResponseItem
-import com.sammy.jetpackcompose.ui.CustomerViewModel
 import com.sammy.jetpackcompose.ui.components.HorizontalDottedProgressBar
 import com.sammy.jetpackcompose.ui.components.NothingHere
-import timber.log.Timber
 
 @Composable
 fun Home() {
     val homeViewModel = viewModel(CustomerViewModel::class.java)
-    val viewState by homeViewModel.state.collectAsState()
-    Surface(Modifier.fillMaxHeight()) {
+    homeViewModel.getCustomers()
+    val customers = homeViewModel.customer.value
+    Surface(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+    ) {
         HomeContent(
-            isRefreshing = viewState.refreshing,
-            customers = viewState.customers,
-            errorMessage = viewState.errorMessage
+            isRefreshing = homeViewModel.loading.value,
+            customers = customers
         )
     }
 }
@@ -29,19 +30,16 @@ fun Home() {
 @Composable
 fun HomeContent(
     isRefreshing: Boolean,
-    customers: List<CustomerResponseItem>,
-    errorMessage: String?
+    customers: List<CustomerResponseItem>
 ) {
     when {
-        isRefreshing -> {
+        isRefreshing && customers.isEmpty() -> {
             HorizontalDottedProgressBar()
         }
         customers.isNullOrEmpty() -> {
             NothingHere()
         }
-        errorMessage!!.isNotEmpty() -> {
-            Timber.e("Error: $errorMessage")
-        }
     }
     CustomerList(customers = customers)
+
 }
