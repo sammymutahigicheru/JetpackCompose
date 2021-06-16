@@ -10,6 +10,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sammy.jetpackcompose.data.CustomerResponseItem
 import com.sammy.jetpackcompose.ui.CustomerViewModel
 import com.sammy.jetpackcompose.ui.components.HorizontalDottedProgressBar
+import com.sammy.jetpackcompose.ui.components.NothingHere
+import timber.log.Timber
 
 @Composable
 fun Home() {
@@ -35,10 +37,10 @@ fun HomeContent(
             HorizontalDottedProgressBar()
         }
         customers.isNullOrEmpty() -> {
-
+            NothingHere()
         }
         errorMessage!!.isNotEmpty() -> {
-
+            Timber.e("Error: $errorMessage")
         }
     }
     CustomerList(customers = customers)
