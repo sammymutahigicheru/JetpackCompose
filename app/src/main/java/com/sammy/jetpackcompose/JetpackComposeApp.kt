@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.sammy.jetpackcompose
 
 import android.content.Context
@@ -16,7 +18,7 @@ fun JetpackComposeApp() {
     if (isOnline) {
 
     } else {
-        ShowOfflineDialog { isOnline = checkIfOnline(context) }
+        OfflineDialog { isOnline = checkIfOnline(context) }
     }
 }
 
@@ -27,14 +29,14 @@ private fun checkIfOnline(context: Context): Boolean {
 }
 
 @Composable
-private fun ShowOfflineDialog(onRetry: () -> Unit) {
+fun OfflineDialog(onRetry: () -> Unit) {
     AlertDialog(
-        onDismissRequest = { },
-        title = { Text(text = stringResource(R.string.connection_error)) },
-        text = { Text(text = stringResource(R.string.connection_message_text)) },
+        onDismissRequest = {},
+        title = { Text(text = stringResource(R.string.connection_error_title)) },
+        text = { Text(text = stringResource(R.string.connection_error_message)) },
         confirmButton = {
-            TextButton(onClick = { onRetry }) {
-                Text(text = stringResource(R.string.retry))
+            TextButton(onClick = onRetry) {
+                Text(stringResource(R.string.retry_label))
             }
         }
     )
